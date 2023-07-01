@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "sort.h"
 
 // Function to find the maximum element in the array
 int findMax(int array[], size_t size) {
@@ -43,33 +44,16 @@ void radix_sort(int array[], size_t size) {
 
     for (int exp = 1; max / exp > 0; exp *= 10) {
         countingSort(array, size, exp);
-
-        // Print the array after each significant digit
-        for (size_t i = 0; i < size; i++) {
-            printf("%d ", array[i]);
-        }
-        printf("\n");
     }
 }
 
-int main() {
-    int array[] = {170, 45, 75, 90, 802, 24, 2, 66};
-    size_t size = sizeof(array) / sizeof(array[0]);
-
-    printf("Original array: ");
+void print_array(const int *array, size_t size) {
     for (size_t i = 0; i < size; i++) {
-        printf("%d ", array[i]);
-    }
-    printf("\n\n");
-
-    radix_sort(array, size);
-
-    printf("\nSorted array: ");
-    for (size_t i = 0; i < size; i++) {
-        printf("%d ", array[i]);
+        printf("%d", array[i]);
+        if (i != size - 1) {
+            printf(", ");
+        }
     }
     printf("\n");
-
-    return 0;
 }
 
